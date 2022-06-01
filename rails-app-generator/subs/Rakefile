@@ -1,0 +1,5 @@
+if Rails.env.development?
+  require 'app_generator'
+  require 'app_generator/tasks'
+  ::AppGenerator::Config.setup_logger
+end

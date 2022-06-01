@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { ENV.fetch('RAILS_MIN_THREADS') { 20 } } %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('DEVELOPMENT_DATABASE', '##DB_NAME_PREFIX##_development') %>
+  username: <%= ENV.fetch('DEVELOPMENT_DATABASE_USER', '') %>
+  password: <%= ENV.fetch('DEVELOPMENT_DATABASE_PASSWORD', '') %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch('TEST_DATABASE', '##DB_NAME_PREFIX##_test') %>
+  username: <%= ENV.fetch('TEST_DATABASE_USER', '') %>
+  password: <%= ENV.fetch('TEST_DATABASE_PASSWORD', '') %>
+
+production:
+  <<: *default
+
+staging:
+  <<: *default

@@ -1,0 +1,15 @@
+linters:
+  LineLength:
+    enabled: false
+  RuboCop:
+    enabled: true
+    ignored_cops:
+      - Layout/LineLength
+      - Layout/TrailingEmptyLines
+      - Layout/IndentationWidth
+      - Layout/EmptyLineAfterGuardClause
+      - Lint/UselessAssignment
+      - Lint/Void
+      - Style/FrozenStringLiteralComment
+      - Style/IfUnlessModifier
+      - Style/Next

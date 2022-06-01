@@ -1,0 +1,4 @@
+gem 'shrine'
+gem 'marcel'
+gem 'image_processing'
+gem 'aws-sdk-s3', require: false

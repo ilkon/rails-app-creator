@@ -1,0 +1,52 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '~> 3.1'
+
+gem 'rails'
+gem 'puma'
+gem 'rack-cors'
+gem 'responders'
+
+gem 'sprockets-rails'
+gem 'importmap-rails'
+gem 'turbo-rails'
+gem 'stimulus-rails'
+
+gem 'pg'
+
+gem 'slim-rails'
+gem 'oj'
+
+gem 'lograge'
+gem 'rollbar'
+
+##SHRINE##
+
+gem 'bootsnap', require: false
+
+group :development do
+  gem 'bullet'
+  gem 'brakeman'
+  gem 'listen'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-performance', require: false
+  gem 'slim_lint'
+
+  ##RAILS_APP_GENERATOR##
+end
+
+group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
+  gem 'ffaker'
+  gem 'factory_bot_rails'
+  gem 'timecop'
+  gem 'simplecov', require: false
+  gem 'rspec-rails'
+  gem 'webmock'
+end
