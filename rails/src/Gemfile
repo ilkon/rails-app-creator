@@ -15,7 +15,7 @@ gem 'importmap-rails'
 gem 'turbo-rails'
 gem 'stimulus-rails'
 
-gem 'pg'
+gem '##DB##'
 
 gem 'slim-rails'
 gem 'oj'

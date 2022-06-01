@@ -25,21 +25,37 @@ rm -rf ./vendor
 sed -i "s/##DB_NAME_PREFIX##/$DB_NAME_PREFIX/gi" ./config/database.yml
 sed -i "s/##PROJECT_NAME##/$PROJECT_NAME/gi" ./.ruby-gemset
 
+# Ask to use preferred database
+read -r -p "Use PostgreSQL [1 - default] or MySQL [2] database? " DB_CHOICE
+case "$DB_CHOICE" in
+  2)
+    sed -i "s/##DB_ADAPTER##/mysql2/gi" ./config/database.yml
+    sed -i "s/##DB_ENCODING##/utf8mb4/gi" ./config/database.yml
+    sed -i "s/##DB##/mysql2/gi" ./Gemfile
+    ;;
+  *)
+    sed -i "s/##DB_ADAPTER##/postgresql/gi" ./config/database.yml
+    sed -i "s/##DB_ENCODING##/unicode/gi" ./config/database.yml
+    sed -i "s/##DB##/pg/gi" ./Gemfile
+esac
+
 # Ask to use UUIDs for primary keys
-read -r -p "Use UUID as type for primary keys? [Y/n] " response
-case "$response" in
+read -r -p "Use UUID as type for primary keys? [Y/n] " UUID_CHOICE
+case "$UUID_CHOICE" in
   [nN][oO]|[nN])
     sed -i "/##UUID##/d" ./config/initializers/generators.rb
     ;;
   *)
     sed -i -e "s/##UUID##/$(sed 's:/:\\/:g' $DIR/uuid/subs/generators.rb)/" ./config/initializers/generators.rb
-    cp -R -L $DIR/uuid/src/. ./
+    if [ $DB_CHOICE -ne 2 ]; then
+      cp -R -L $DIR/uuid/src/. ./
+    fi
     ;;
 esac
 
 # Ask to use rails-app-generator
-read -r -p "Add rails-app-generator? [Y/n] " response
-case "$response" in
+read -r -p "Add rails-app-generator? [Y/n] " APPGEN_CHOICE
+case "$APPGEN_CHOICE" in
   [nN][oO]|[nN])
     sed -i "/##RAILS_APP_GENERATOR##/d" ./Gemfile
     sed -i "/##RAILS_APP_GENERATOR##/d" ./Rakefile
@@ -52,8 +68,8 @@ case "$response" in
 esac
 
 # Ask to use Shrine
-read -r -p "Use Shrine for file uploading? [Y/n] " response
-case "$response" in
+read -r -p "Use Shrine for file uploading? [Y/n] " SHRINE_CHOICE
+case "$SHRINE_CHOICE" in
   [nN][oO]|[nN])
     sed -i "/##SHRINE##/d" ./README.md
     sed -i "/##SHRINE##/d" ./config/routes.rb
