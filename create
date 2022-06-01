@@ -25,8 +25,8 @@ rm -rf ./vendor
 sed -i "s/##DB_NAME_PREFIX##/$DB_NAME_PREFIX/gi" ./config/database.yml
 sed -i "s/##PROJECT_NAME##/$PROJECT_NAME/gi" ./.ruby-gemset
 
-# Ask to use UUIDs as type for object ids
-read -r -p "Use UUID as a type for object ids? [Y/n] " response
+# Ask to use UUIDs for primary keys
+read -r -p "Use UUID as type for primary keys? [Y/n] " response
 case "$response" in
   [nN][oO]|[nN])
     sed -i "/##UUID##/d" ./config/initializers/generators.rb
@@ -48,7 +48,6 @@ case "$response" in
     sed -i -e "s/##RAILS_APP_GENERATOR##/$(sed 's:/:\\/:g' $DIR/rails-app-generator/subs/Gemfile)/" ./Gemfile
     awk -v r="$(cat $DIR/rails-app-generator/subs/Rakefile)" '{gsub(/##RAILS_APP_GENERATOR##/,r)}1' ./Rakefile > ./Rakefile.tmp && mv ./Rakefile.tmp ./Rakefile
     cp -R -L $DIR/rails-app-generator/src/. ./
-
     ;;
 esac
 
