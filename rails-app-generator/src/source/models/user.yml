@@ -1,0 +1,41 @@
+attributes:
+  first_name:
+    type: string
+    presence: true
+    strip: true
+  last_name:
+    type: string
+    presence: true
+    strip: true
+  email:
+    type: email
+    presence: true
+    uniqueness: true
+  password:
+    type: password
+  active:
+    type: boolean
+    default: true
+  access_expired_at:
+    type: datetime
+  confirm_email_token:
+    type: string
+    uniqueness: true
+  confirm_email_sent_at:
+    type: datetime
+  confirmed_email_at:
+    type: datetime
+  reset_password_token:
+    type: string
+    uniqueness: true
+  reset_password_sent_at:
+    type: datetime
+  meta:
+    type: jsonb
+    default: '{}'
+  avatar_data:
+    type: jsonb
+
+properties:
+  id: uuid
+  timestamps: true
