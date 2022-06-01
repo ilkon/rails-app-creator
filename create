@@ -1,12 +1,11 @@
 #!/bin/sh
 
 DIR="$(pwd)"
+PROJECT_NAME="$(basename $1)"
+DB_NAME_PREFIX="$(echo "$PROJECT_NAME" | sed -r 's/[-]+/_/g')"
 
 # Generate empty Rails project with basic configuration
 rails new $1 --rc=./.railsrc
-
-PROJECT_NAME="$(basename $1)"
-DB_NAME_PREFIX="$(echo "$PROJECT_NAME" | sed -r 's/[-]+/_/g')"
 
 # Copy all Rails static files
 cp -R -L ./rails/src/. $1
