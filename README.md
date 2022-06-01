@@ -25,3 +25,10 @@ Run `create PROJECT_PATH` and it will generate a Rails project with all of our c
 
 
 4. Finally, it initializes the local git repository, installs pre-commit hook and exits.
+
+> **Note**: the command `bundle install` is not a part of this script, because of:
+>
+> - it may fail if some packages are not installed in the target sustem (for example, some db-related packages)
+> - it may require installing target version of Ruby first and / or gemset (in case of using RVM)
+> 
+> User needs to run this command individually.
