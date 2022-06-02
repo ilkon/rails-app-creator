@@ -42,19 +42,19 @@ case "$DB_CHOICE" in
     sed -i "s/##DB##/pg/gi" ./Gemfile
 esac
 
-# Ask to use UUIDs for primary keys
-read -r -p "Use UUID as type for primary keys? [Y/n] " UUID_CHOICE
-case "$UUID_CHOICE" in
-  [nN][oO]|[nN])
-    sed -i "/##UUID##/d" ./config/initializers/generators.rb
-    ;;
-  *)
-    sed -i -e "s/##UUID##/$(sed 's:/:\\/:g' $DIR/uuid/subs/generators.rb)/" ./config/initializers/generators.rb
-    if [ -z "$DB_CHOICE" ] || [ $DB_CHOICE -ne 2 ]; then
+# Ask to use UUIDs for primary keys - for PostgreSQL only
+if [ -z "$DB_CHOICE" ] || [ $DB_CHOICE -ne 2 ]; then
+  read -r -p "Use UUID as type for primary keys? [Y/n] " UUID_CHOICE
+  case "$UUID_CHOICE" in
+    [nN][oO]|[nN])
+      sed -i "/##UUID##/d" ./config/initializers/generators.rb
+      ;;
+    *)
+      sed -i -e "s/##UUID##/$(sed 's:/:\\/:g' $DIR/uuid/subs/generators.rb)/" ./config/initializers/generators.rb
       cp -R -L $DIR/uuid/src/. ./
-    fi
-    ;;
-esac
+      ;;
+  esac
+fi
 
 # Ask to use rails-app-generator
 read -r -p "Add rails-app-generator? [Y/n] " APPGEN_CHOICE
