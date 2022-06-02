@@ -16,7 +16,7 @@ Run `create PROJECT_PATH` and it will generate a Rails project with all of our c
    - to use UUIDs for primary keys
    - to use `rails-app-generator` gem as a generator for models/migrations
    - to use `shrine` gem for file uploads
-   - etc
+   - etc.
 
     In case of positive answer script adds files from `src` subfolder of corresponding option, and use files from subfolder `subs` for substituting params in the app config files.
 
