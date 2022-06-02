@@ -6,6 +6,15 @@ This template serves as the base for every Rails project.
 
 Run `create PROJECT_PATH` and it will generate a Rails project with all of our common gems and configurations.
 
+## Prerequisites
+
+The script is written on bash, so `bash` (or its replacement) should be installed. The script calls multiple commands that need to be installed as well:
+
+- `sed`
+- `awk`
+- `gem` (usually a part of `ruby`)
+- `git`
+
 ## Technical implementation
 
 1. The script runs a regular `rails new` command, using some pre-configurations from `.rails.rc` config-file and `template.rb` template. Then it adds / overwrites the app files with the files from `rails/src` folder.
