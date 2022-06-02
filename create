@@ -4,6 +4,9 @@ DIR="$(pwd)"
 PROJECT_NAME="$(basename $1)"
 DB_NAME_PREFIX="$(echo "$PROJECT_NAME" | sed -r 's/[-]+/_/g')"
 
+# Install rails if necessary
+if ! gem list -i "^rails" > /dev/null 2>&1; then gem install rails; fi
+
 # Generate empty Rails project with basic configuration
 rails new $1 --rc=./.railsrc
 
@@ -47,7 +50,7 @@ case "$UUID_CHOICE" in
     ;;
   *)
     sed -i -e "s/##UUID##/$(sed 's:/:\\/:g' $DIR/uuid/subs/generators.rb)/" ./config/initializers/generators.rb
-    if [ $DB_CHOICE -ne 2 ]; then
+    if [ -z "$DB_CHOICE" ] || [ $DB_CHOICE -ne 2 ]; then
       cp -R -L $DIR/uuid/src/. ./
     fi
     ;;
@@ -87,8 +90,13 @@ case "$SHRINE_CHOICE" in
     ;;
 esac
 
+# Install rubocop if necessary
+if ! gem list -i "^rubocop$" > /dev/null 2>&1; then gem install rubocop; fi
+if ! gem list -i "^rubocop-performance$" > /dev/null 2>&1; then gem install rubocop-performance; fi
+if ! gem list -i "^rubocop-rails$" > /dev/null 2>&1; then gem install rubocop-rails; fi
+if ! gem list -i "^rubocop-rspec$" > /dev/null 2>&1; then gem install rubocop-rspec; fi
+
 # Fix Rubocop offences in Rails-generated files
-gem install rubocop rubocop-performance rubocop-rails rubocop-rspec
 rubocop -A
 
 # Create staging environment from production
