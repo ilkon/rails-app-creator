@@ -23,6 +23,8 @@ gem 'oj'
 gem 'lograge'
 gem 'rollbar'
 
+##SIDEKIQ##
+
 ##SHRINE##
 
 gem 'bootsnap', require: false

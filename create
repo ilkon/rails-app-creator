@@ -70,6 +70,22 @@ case "$APPGEN_CHOICE" in
     ;;
 esac
 
+# Ask to use Sidekiq
+read -r -p "Use Sidekiq for background job processing? [Y/n] " SIDEKIQ_CHOICE
+case "$SIDEKIQ_CHOICE" in
+  [nN][oO]|[nN])
+    sed -i "/##SIDEKIQ##/d" ./README.md
+    sed -i "/##SIDEKIQ##/d" ./config/application.rb
+    sed -i "/##SIDEKIQ##/d" ./Gemfile
+    ;;
+  *)
+    awk -v r="$(cat $DIR/sidekiq/subs/README.md)" '{gsub(/##SIDEKIQ##/,r)}1' ./README.md > ./README.md.tmp && mv ./README.md.tmp ./README.md
+    awk -v r="$(cat $DIR/sidekiq/subs/application.rb)" '{gsub(/##SIDEKIQ##/,r)}1' ./config/application.rb > ./config/application.rb.tmp && mv ./config/application.rb.tmp ./config/application.rb
+    awk -v r="$(cat $DIR/sidekiq/subs/Gemfile)" '{gsub(/##SIDEKIQ##/,r)}1' ./Gemfile > ./Gemfile.tmp && mv ./Gemfile.tmp ./Gemfile
+    cp -R -L $DIR/sidekiq/src/. ./
+    ;;
+esac
+
 # Ask to use Shrine
 read -r -p "Use Shrine for file uploading? [Y/n] " SHRINE_CHOICE
 case "$SHRINE_CHOICE" in

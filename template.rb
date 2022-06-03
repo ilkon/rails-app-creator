@@ -1,6 +1,7 @@
 application nil do
   <<-CONF
     config.eager_load_paths << Rails.root.join('lib')
+    ##SIDEKIQ##
     ##SHRINE##
 
   CONF

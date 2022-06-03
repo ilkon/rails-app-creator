@@ -22,9 +22,10 @@ The script is written on bash, so `bash` (or its replacement) should be installe
 
 2. After that the script asks the user about desired app configuration, such as:
 
-   - to use UUIDs for primary keys
+   - the database to use (`PostgreSQL` as default or `MySQL`)
+   - to use `sidekiq` gem for background job processing
+   - to use `shrine` gem for file upload processing
    - to use `rails-app-generator` gem as a generator for models/migrations
-   - to use `shrine` gem for file uploads
    - etc.
 
     In case of positive answer script adds files from `src` subfolder of corresponding option, and use files from subfolder `subs` for substituting params in the app config files.
@@ -33,7 +34,7 @@ The script is written on bash, so `bash` (or its replacement) should be installe
 3. Next, the script installs `rubocop` gem and runs it with auto-correcting option, to fix all the offences.
 
 
-4. Finally, it initializes the local git repository, installs pre-commit hook and exits.
+4. Finally, it initializes the local `git` repository, installs pre-commit hook and exits.
 
 > **Note**: the command `bundle install` is not a part of this script, because of:
 >

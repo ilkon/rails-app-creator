@@ -6,7 +6,7 @@ if defined?(ActionMailer)
   Rails.application.config.action_mailer.perform_caching = false
 
   if Rails.env.development?
-    Rails.application.config.action_mailer.default_options = { from: ENV.fetch('SENDGRID_EMAIL_FROM', nil) }
+    Rails.application.config.action_mailer.default_options = { from: 'no-reply@localhost' }
     Rails.application.config.action_mailer.delivery_method = :smtp
     Rails.application.config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
     Rails.application.config.action_mailer.default_url_options = {

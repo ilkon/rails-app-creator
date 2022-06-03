@@ -2,10 +2,9 @@
 
 The project is an API web application built using the Ruby on Rails framework. It uses the PostgreSQL database as the main data storage. The test coverage is provided with the help of RSpec framework, view templates are on Slim.
 
-### Job processing
+##SIDEKIQ##
 
 ##SHRINE##
-
 
 ## Usage
 

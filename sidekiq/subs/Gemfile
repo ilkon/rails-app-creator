@@ -1,0 +1,4 @@
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq_alive'
+gem 'sidekiq-scheduler'
