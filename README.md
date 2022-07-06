@@ -25,7 +25,7 @@ The script is written on bash, so `bash` (or its replacement) should be installe
    - the database to use (`PostgreSQL` as default or `MySQL`)
    - to use `sidekiq` gem for background job processing
    - to use `shrine` gem for file upload processing
-   - to use `rails-app-generator` gem as a generator for models/migrations
+   - to use `rails-data-modeller` gem as a generator for models/migrations
    - etc.
 
     In case of positive answer script adds files from `src` subfolder of corresponding option, and use files from subfolder `subs` for substituting params in the app config files.
@@ -38,7 +38,7 @@ The script is written on bash, so `bash` (or its replacement) should be installe
 
 > **Note**: the command `bundle install` is not a part of this script, because of:
 >
-> - it may fail if some packages are not installed in the target sustem (for example, some db-related packages)
+> - it may fail if some packages are not installed in the target sustem (for example, some database-related packages)
 > - it may require installing target version of Ruby first and / or gemset (in case of using RVM)
 > 
 > User needs to run this command individually.

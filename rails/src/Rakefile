@@ -7,4 +7,4 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-##RAILS_APP_GENERATOR##
+##RAILS_DATA_MODELLER##

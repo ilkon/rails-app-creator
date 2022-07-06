@@ -1,0 +1,1 @@
+gem 'rails-data-modeller', github: 'ilkon/rails-data-modeller'

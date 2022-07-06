@@ -56,17 +56,17 @@ if [ -z "$DB_CHOICE" ] || [ $DB_CHOICE -ne 2 ]; then
   esac
 fi
 
-# Ask to use rails-app-generator
-read -r -p "Add rails-app-generator? [Y/n] " APPGEN_CHOICE
+# Ask to use rails-data-modeller
+read -r -p "Add rails-data-modeller? [Y/n] " APPGEN_CHOICE
 case "$APPGEN_CHOICE" in
   [nN][oO]|[nN])
-    sed -i "/##RAILS_APP_GENERATOR##/d" ./Gemfile
-    sed -i "/##RAILS_APP_GENERATOR##/d" ./Rakefile
+    sed -i "/##RAILS_DATA_MODELLER##/d" ./Gemfile
+    sed -i "/##RAILS_DATA_MODELLER##/d" ./Rakefile
     ;;
   *)
-    sed -i -e "s/##RAILS_APP_GENERATOR##/$(sed 's:/:\\/:g' $DIR/rails-app-generator/subs/Gemfile)/" ./Gemfile
-    awk -v r="$(cat $DIR/rails-app-generator/subs/Rakefile)" '{gsub(/##RAILS_APP_GENERATOR##/,r)}1' ./Rakefile > ./Rakefile.tmp && mv ./Rakefile.tmp ./Rakefile
-    cp -R -L $DIR/rails-app-generator/src/. ./
+    sed -i -e "s/##RAILS_DATA_MODELLER##/$(sed 's:/:\\/:g' $DIR/rails-data-modeller/subs/Gemfile)/" ./Gemfile
+    awk -v r="$(cat $DIR/rails-data-modeller/subs/Rakefile)" '{gsub(/##RAILS_DATA_MODELLER##/,r)}1' ./Rakefile > ./Rakefile.tmp && mv ./Rakefile.tmp ./Rakefile
+    cp -R -L $DIR/rails-data-modeller/src/. ./
     ;;
 esac
 

@@ -1,0 +1,5 @@
+if Rails.env.development?
+  require 'data_modeller'
+  require 'data_modeller/tasks'
+  ::DataModeller::Config.setup_logger
+end

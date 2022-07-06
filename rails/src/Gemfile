@@ -39,7 +39,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'slim_lint'
 
-  ##RAILS_APP_GENERATOR##
+  ##RAILS_DATA_MODELLER##
 end
 
 group :development, :test do
