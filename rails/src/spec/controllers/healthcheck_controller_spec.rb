@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HealthcheckController, type: :controller do
+RSpec.describe HealthcheckController do
   describe 'GET #index' do
     it 'responds with appropriate HTTP code' do
       get :index

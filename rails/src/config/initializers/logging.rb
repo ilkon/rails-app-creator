@@ -23,7 +23,7 @@ elsif defined?(Lograge)
     addons[:error] = { type: data[:exception], content: data[:exception_object] } if data[:exception].present?
 
     reject_keys = %w[controller action]
-    addons[:params] = data[:params].reject { |key, _| reject_keys.include?(key) } if data[:params].present?
+    addons[:params] = data[:params].except(*reject_keys) if data[:params].present?
 
     addons
   end
