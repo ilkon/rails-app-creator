@@ -38,6 +38,8 @@ Layout/HashAlignment:
   EnforcedColonStyle: table
 Bundler/OrderedGems:
   Enabled: false
+Rails/ActionOrder:
+  Enabled: false
 Rails/EnvironmentVariableAccess:
   AllowReads: true
 Rails/CreateTableWithTimestamps:
