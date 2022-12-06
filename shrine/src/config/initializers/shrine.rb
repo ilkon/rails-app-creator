@@ -9,9 +9,9 @@ when :s3
   s3_options = {
     access_key_id:     ENV.fetch('SPACES_ACCESS_KEY_ID', nil),
     secret_access_key: ENV.fetch('SPACES_SECRET_ACCESS_KEY', nil),
+    endpoint:          ENV.fetch('SPACES_ENDPOINT_URL', nil),
     region:            ENV.fetch('SPACES_REGION', nil),
-    bucket:            ENV.fetch('SPACES_BUCKET', nil),
-    endpoint:          ENV.fetch('SPACES_ENDPOINT', nil)
+    bucket:            ENV.fetch('SPACES_BUCKET', nil)
   }
 
   Shrine.storages = {
@@ -19,7 +19,7 @@ when :s3
     store: Shrine::Storage::S3.new(prefix: 'store', upload_options: { acl: 'public-read' }, **s3_options)
   }
 
-  Shrine.plugin :url_options, store: { host: "#{ENV.fetch('SPACES_ENDPOINT', nil)}/#{ENV.fetch('SPACES_BUCKET', nil)}/", public: true }
+  Shrine.plugin :url_options, store: { host: "#{ENV.fetch('SPACES_ENDPOINT_URL', nil)}/#{ENV.fetch('SPACES_BUCKET', nil)}/", public: true }
 
 when :local
   require 'shrine/storage/file_system'
