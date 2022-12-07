@@ -4,7 +4,7 @@ if defined?(Rollbar)
   Rollbar.configure do |config|
     config.environment = Rails.env
 
-    config.enabled = (Rails.env.staging? || Rails.env.production?) && ENV.fetch('ROLLBAR_ACCESS_TOKEN').present?
+    config.enabled = (Rails.env.staging? || Rails.env.production?) && ENV['ROLLBAR_ACCESS_TOKEN'].present?
     if config.enabled
       config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN')
 
@@ -25,7 +25,7 @@ if defined?(Rollbar)
       end
     end
 
-    config.js_enabled = config.enabled && ENV.fetch('ROLLBAR_CLIENT_ACCESS_TOKEN').present?
+    config.js_enabled = config.enabled && ENV['ROLLBAR_CLIENT_ACCESS_TOKEN'].present?
     if config.js_enabled
       config.js_options = {
         accessToken:                ENV.fetch('ROLLBAR_CLIENT_ACCESS_TOKEN'),
